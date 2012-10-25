@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+  <div class="well">
+    <p>
+      {% trans "Rule NO.0 : If you do not use email list or other like gtalk chat tools please do not use our site feature." %}<br/>
+      {% trans "Welcome to our pair work network, please sign up and fill your information now" %}<br/>
+      {% trans "Do not have a account?" %}<a href="{% url registration_register %}">SignUp</a><br/>
+      {% if request.user.is_authenticated %}
+        <a class="btn" href="{% url auth_logout %}">{{ request.user.username }}&nbsp;{% trans "Sign Out" %}</a>
+      {% else %}
+      {% trans "Already have a account?" %}<a class="btn" href="{% url auth_login %}">{% trans "Sign In" %}</a>
+      </form>
+      {% endif %}
+      <br/>
+    </p>
+  </div>
+  {% if request.user.is_authenticated %}
+  <div class="well">
+    <p>
+      {% trans "Please fill these information, so we can use it to find out the best match person for you :)" %}<br />
+      <a class="btn" href="{% url ModifyProfile %}">{% trans "Base Information" %}</a>
+      <a class="btn" href="{% url ModifyIntentInfo %}">{% trans "Intention Information" %}</a>
+    </p>
+  </div>
+  {% endif %}
+{% endblock %}
